@@ -1,0 +1,17 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv6eaw4d0moc6"]
+
+[ext_resource type="PackedScene" uid="uid://nyagy8a5pwgc" path="res://addons/low_poly_classroom_assets.glb" id="1_ljofg"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_ljofg")]
+
+[node name="clock" parent="Sketchfab_model/bd062bd89f3f4e85878932452716caaf_fbx/RootNode" index="3"]
+transform = Transform3D(-1, 1.22465e-16, -8.74228e-08, 1.22465e-16, 1, 1.22465e-16, 8.74228e-08, 1.22465e-16, -1, 4.67567, -1.93576, -45.876)
+
+[node name="student_chair" parent="Sketchfab_model/bd062bd89f3f4e85878932452716caaf_fbx/RootNode" index="5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 70, 1.252, 36.0495)
+
+[node name="bookcase" parent="Sketchfab_model/bd062bd89f3f4e85878932452716caaf_fbx/RootNode" index="8"]
+visible = false
+
+[node name="pCube27" parent="Sketchfab_model/bd062bd89f3f4e85878932452716caaf_fbx/RootNode/libro_quaderno2" index="5"]
+visible = false

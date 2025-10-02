@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://dw0xjy2aao25o"]
+
+[ext_resource type="PackedScene" uid="uid://tmum6whqgyu4" path="res://map/japanese_classroom.glb" id="1_c7s6e"]
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c7s6e"]
+points = PackedVector3Array(-0.51041, -0.51041, -0.82321, 0.509801, -0.48959, 0.50931, 0.509801, -0.51041, 0.50931, 0.509801, -0.48959, -0.82321, -0.51041, -0.48959, 0.50931, -0.51041, -0.51041, 0.50931, 0.509801, -0.51041, -0.82321, -0.51041, -0.48959, -0.82321)
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_c7s6e")]
+
+[node name="FLOOR" parent="Sketchfab_model/74190c655c284c05ae68ac97ed89578d_fbx/RootNode/PAREDES/TODO/polySurface3/polySurface20" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.0145899, 1.63992)
+
+[node name="FLOOR_StingrayPBS10_0" parent="Sketchfab_model/74190c655c284c05ae68ac97ed89578d_fbx/RootNode/PAREDES/TODO/polySurface3/polySurface20/FLOOR" index="0"]
+transform = Transform3D(1.5, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.6002)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Sketchfab_model/74190c655c284c05ae68ac97ed89578d_fbx/RootNode/PAREDES/TODO/polySurface3/polySurface20/FLOOR/FLOOR_StingrayPBS10_0" index="0"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Sketchfab_model/74190c655c284c05ae68ac97ed89578d_fbx/RootNode/PAREDES/TODO/polySurface3/polySurface20/FLOOR/FLOOR_StingrayPBS10_0/StaticBody3D" index="0"]
+shape = SubResource("ConvexPolygonShape3D_c7s6e")

@@ -1,0 +1,114 @@
+[gd_scene load_steps=12 format=3 uid="uid://dqi5h78ke6kjq"]
+
+[ext_resource type="Script" uid="uid://b51jlsuucu484" path="res://teacher_.gd" id="1_7m52h"]
+[ext_resource type="Script" uid="uid://8api1gerylye" path="res://nondi.gd" id="2_xop5u"]
+[ext_resource type="Script" uid="uid://dd38gfvt67edp" path="res://iron.gd" id="3_xop5u"]
+[ext_resource type="Script" uid="uid://dve45y5xuqirc" path="res://kalu.gd" id="4_ltmum"]
+[ext_resource type="Script" uid="uid://cie1kstnurxoo" path="res://motu.gd" id="5_akkam"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ltmum"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_smwcf"]
+material = SubResource("StandardMaterial3D_ltmum")
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_5qm5n"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7m52h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_akkam"]
+albedo_color = Color(0, 0.698039, 1, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y32vj"]
+material = SubResource("StandardMaterial3D_akkam")
+
+[node name="models" type="Node3D"]
+
+[node name="math teacher" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="math teacher"]
+mesh = SubResource("CapsuleMesh_smwcf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="math teacher"]
+shape = SubResource("CapsuleShape3D_5qm5n")
+debug_color = Color(0.976471, 0.14902, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="math teacher"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("1_7m52h")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="math teacher/Area3D"]
+shape = SubResource("CapsuleShape3D_7m52h")
+debug_color = Color(0.128152, 0.555064, 1, 1)
+
+[node name="nondi" type="CharacterBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="nondi"]
+mesh = SubResource("CapsuleMesh_smwcf")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="nondi"]
+shape = SubResource("CapsuleShape3D_5qm5n")
+debug_color = Color(0.976471, 0.14902, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="nondi"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("2_xop5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="nondi/Area3D"]
+shape = SubResource("CapsuleShape3D_7m52h")
+debug_color = Color(0.128152, 0.555064, 1, 1)
+
+[node name="iron" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="iron"]
+shape = SubResource("CapsuleShape3D_5qm5n")
+debug_color = Color(0.976471, 0.14902, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="iron"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("3_xop5u")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="iron/Area3D"]
+shape = SubResource("CapsuleShape3D_7m52h")
+debug_color = Color(0.128152, 0.555064, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="iron"]
+mesh = SubResource("CapsuleMesh_y32vj")
+
+[node name="kalu" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kalu"]
+shape = SubResource("CapsuleShape3D_5qm5n")
+debug_color = Color(0.976471, 0.14902, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="kalu"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("4_ltmum")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kalu/Area3D"]
+shape = SubResource("CapsuleShape3D_7m52h")
+debug_color = Color(0.128152, 0.555064, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="kalu"]
+mesh = SubResource("CapsuleMesh_y32vj")
+
+[node name="motu" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="motu"]
+shape = SubResource("CapsuleShape3D_5qm5n")
+debug_color = Color(0.976471, 0.14902, 0, 1)
+
+[node name="Area3D" type="Area3D" parent="motu"]
+transform = Transform3D(1.5, 0, 0, 0, 1.5, 0, 0, 0, 1.5, 0, 0, 0)
+script = ExtResource("5_akkam")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="motu/Area3D"]
+shape = SubResource("CapsuleShape3D_7m52h")
+debug_color = Color(0.128152, 0.555064, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="motu"]
+mesh = SubResource("CapsuleMesh_y32vj")
