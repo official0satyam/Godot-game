@@ -1,0 +1,939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Magical Diwali Celebration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(to bottom, #0a0a2a, #1a1a4a, #0a0a2a);
+            color: #fff;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        .container {
+            width: 100%;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Sky with Stars */
+        .sky {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, #0a0a2a, #1a1a4a, #0a0a2a);
+            z-index: -2;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            animation: twinkle 5s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        .moon {
+            position: absolute;
+            top: 50px;
+            right: 5%;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle at 40px 40px, #f9f3c5, #f0d770);
+            border-radius: 50%;
+            box-shadow: 0 0 60px 20px rgba(249, 243, 197, 0.7);
+            z-index: -1;
+            animation: moonGlow 4s infinite alternate;
+        }
+
+        @keyframes moonGlow {
+            0% { box-shadow: 0 0 60px 20px rgba(249, 243, 197, 0.7); }
+            100% { box-shadow: 0 0 80px 30px rgba(249, 243, 197, 0.9); }
+        }
+
+        /* Floating Elements */
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            font-size: 2rem;
+            color: rgba(255, 204, 0, 0.6);
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(100vh) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+
+        /* Diyas Section */
+        .diyas-section {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #ffcc00;
+            margin-bottom: 30px;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 20px rgba(255, 204, 0, 0.8);
+        }
+
+        .instructions {
+            font-size: 1.5rem;
+            color: #ffcc00;
+            margin-bottom: 30px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .diyas-container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            gap: 25px;
+            margin: 30px 0;
+            flex-wrap: nowrap;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 10;
+            width: 90%;
+            max-width: 900px;
+        }
+
+        .diya {
+            width: 100px;
+            height: 130px;
+            background: linear-gradient(to bottom, #8B4513, #5D2906);
+            border-radius: 50% 50% 0 0;
+            position: relative;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-end;
+            padding-bottom: 15px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            transition: transform 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .diya:hover {
+            transform: translateY(-10px);
+        }
+
+        .diya::before {
+            content: '';
+            position: absolute;
+            top: -30px;
+            left: 25px;
+            width: 50px;
+            height: 50px;
+            background: #ff9900;
+            border-radius: 50% 50% 0 0;
+            box-shadow: 0 0 30px 20px rgba(255, 153, 0, 0.9);
+            z-index: 1;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .diya.lit::before {
+            opacity: 1;
+        }
+
+        .diya-label {
+            color: #ffcc00;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            font-weight: bold;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+            font-family: 'Playfair Display', serif;
+            z-index: 2;
+        }
+
+        /* Mithai Section */
+        .mithai-section {
+            text-align: center;
+            margin-bottom: 40px;
+            width: 100%;
+            max-width: 1000px;
+            display: none;
+        }
+
+        .mithai-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+
+        .mithai {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            animation: floatMithai 4s infinite ease-in-out;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+            border: 3px solid rgba(255, 255, 255, 0.4);
+            transition: transform 0.3s;
+            opacity: 0;
+        }
+
+        .mithai.show {
+            opacity: 1;
+        }
+
+        .mithai:hover {
+            transform: scale(1.2);
+        }
+
+        .kaju-katli { background: radial-gradient(circle, #ffffff, #ffffcc); color: #cc9900; }
+        .ladoo { background: radial-gradient(circle, #ffcc00, #ff9900); }
+        .jalebi { background: radial-gradient(circle, #ff6600, #cc3300); }
+        .chocolate { background: radial-gradient(circle, #8b4513, #5d2906); }
+        .donut { background: radial-gradient(circle, #ffccff, #ff99cc); color: #cc0066; }
+
+        @keyframes floatMithai {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(8deg); }
+        }
+
+        /* Rocket */
+        .rocket {
+            position: fixed;
+            bottom: -200px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 180px;
+            z-index: 20;
+            transition: bottom 4s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+
+        .rocket-body {
+            width: 100px;
+            height: 180px;
+            background: linear-gradient(to bottom, #ff3333, #cc0000);
+            border-radius: 50px 50px 15px 15px;
+            position: relative;
+        }
+
+        .rocket-top {
+            width: 0;
+            height: 0;
+            border-left: 50px solid transparent;
+            border-right: 50px solid transparent;
+            border-bottom: 70px solid #ff6666;
+            position: absolute;
+            top: -70px;
+        }
+
+        .rocket-fire {
+            position: absolute;
+            bottom: -90px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 100px;
+            background: linear-gradient(to bottom, #ff9900, #ff3300, transparent);
+            border-radius: 50% 50% 20px 20px;
+            filter: blur(8px);
+            animation: fire 0.2s infinite;
+        }
+
+        @keyframes fire {
+            0%, 100% { height: 100px; opacity: 1; }
+            50% { height: 130px; opacity: 0.8; }
+        }
+
+        /* Messages */
+        .message-container {
+            text-align: center;
+            margin: 40px 0;
+            width: 100%;
+            max-width: 1000px;
+            display: none;
+        }
+
+        .diwali-message {
+            font-size: 6rem;
+            font-weight: bold;
+            color: #ffcc00;
+            text-shadow: 0 0 30px rgba(255, 204, 0, 0.9);
+            margin-bottom: 30px;
+            font-family: 'Dancing Script', cursive;
+            animation: glow 2s infinite alternate;
+            line-height: 1.2;
+        }
+
+        @keyframes glow {
+            from { text-shadow: 0 0 30px rgba(255, 204, 0, 0.9); }
+            to { text-shadow: 0 0 40px rgba(255, 204, 0, 1), 0 0 50px rgba(255, 204, 0, 0.9); }
+        }
+
+        .by-line {
+            font-size: 2rem;
+            color: #ffaa00;
+            margin-bottom: 40px;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 0 15px rgba(255, 170, 0, 0.8);
+        }
+
+        .motivational-text {
+            font-size: 1.8rem;
+            color: #fff;
+            line-height: 1.7;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            border-radius: 20px;
+            backdrop-filter: blur(8px);
+            border: 2px solid rgba(255, 215, 0, 0.4);
+            font-family: 'Playfair Display', serif;
+            max-width: 800px;
+            margin: 0 auto;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Fireworks */
+        .fireworks {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 25;
+        }
+
+        .firework {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            animation: explode 2s ease-out forwards;
+        }
+
+        @keyframes explode {
+            0% {
+                transform: translate(0, 0) scale(1);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(0);
+                opacity: 0;
+            }
+        }
+
+        /* Surprise Popup */
+        .surprise-popup {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #ffcc00, #ff9900);
+            color: #302b63;
+            padding: 40px;
+            border-radius: 25px;
+            box-shadow: 0 0 50px rgba(255, 204, 0, 0.9);
+            z-index: 40;
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            display: none;
+            animation: popIn 0.5s ease;
+        }
+
+        @keyframes popIn {
+            0% { transform: translate(-50%, -50%) scale(0); }
+            70% { transform: translate(-50%, -50%) scale(1.1); }
+            100% { transform: translate(-50%, -50%) scale(1); }
+        }
+
+        .surprise-popup h3 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            font-family: 'Dancing Script', cursive;
+        }
+
+        .surprise-popup p {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+        }
+
+        .close-popup {
+            background: #302b63;
+            color: #ffcc00;
+            border: none;
+            padding: 12px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .close-popup:hover {
+            background: #1a1a4a;
+            transform: scale(1.05);
+        }
+
+        /* Sparkles */
+        .sparkle {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #ffcc00;
+            border-radius: 50%;
+            pointer-events: none;
+            animation: sparkle 1s ease-out forwards;
+            box-shadow: 0 0 12px 3px #ffcc00;
+        }
+
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            50% { transform: scale(2) rotate(180deg); opacity: 0.8; }
+            100% { transform: scale(0) rotate(360deg); opacity: 0; }
+        }
+
+        /* Sound Control */
+        .sound-control {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 12px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5rem;
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .sound-control:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        /* Progress Indicator */
+        .progress-indicator {
+            display: flex;
+            gap: 12px;
+            margin: 20px 0;
+        }
+
+        .progress-dot {
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .progress-dot.active {
+            background: #ffcc00;
+            box-shadow: 0 0 12px #ffcc00;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section-title { font-size: 2.2rem; }
+            .diwali-message { font-size: 4rem; }
+            .diyas-container { gap: 15px; }
+            .diya { width: 80px; height: 110px; }
+            .mithai { width: 70px; height: 70px; font-size: 2.5rem; }
+            .mithai-container { gap: 20px; }
+            .moon { width: 90px; height: 90px; }
+            .motivational-text { font-size: 1.4rem; }
+            .instructions { font-size: 1.2rem; }
+            .by-line { font-size: 1.6rem; }
+            .surprise-popup { padding: 30px; }
+            .surprise-popup h3 { font-size: 2rem; }
+            .surprise-popup p { font-size: 1.3rem; }
+        }
+
+        @media (max-width: 480px) {
+            .diyas-container { gap: 10px; }
+            .diya { width: 65px; height: 95px; }
+            .diya-label { font-size: 0.9rem; }
+            .mithai { width: 60px; height: 60px; font-size: 2rem; }
+            .diwali-message { font-size: 3rem; }
+            .by-line { font-size: 1.3rem; }
+            .surprise-popup { padding: 25px; }
+            .surprise-popup h3 { font-size: 1.8rem; }
+            .surprise-popup p { font-size: 1.1rem; }
+            .motivational-text { font-size: 1.2rem; padding: 20px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Sound Control -->
+    <button class="sound-control" id="soundControl">🔊</button>
+
+    <div class="container">
+        <!-- Sky with Stars -->
+        <div class="sky">
+            <div class="stars" id="stars"></div>
+            <div class="moon"></div>
+            <div class="floating-elements" id="floatingElements"></div>
+        </div>
+
+        <!-- Progress Indicator -->
+        <div class="progress-indicator">
+            <div class="progress-dot active" id="progress1"></div>
+            <div class="progress-dot" id="progress2"></div>
+            <div class="progress-dot" id="progress3"></div>
+            <div class="progress-dot" id="progress4"></div>
+        </div>
+
+        <!-- Diyas Section -->
+        <div class="diyas-section" id="diyasSection">
+            <h2 class="section-title">Light the Diyas of Blessings</h2>
+            <p class="instructions">Click on each diya to light it up and receive blessings for a prosperous year</p>
+            
+            <div class="diyas-container">
+                <div class="diya" id="diya1">
+                    <span class="diya-label">Success</span>
+                </div>
+                <div class="diya" id="diya2">
+                    <span class="diya-label">Health</span>
+                </div>
+                <div class="diya" id="diya3">
+                    <span class="diya-label">Joy</span>
+                </div>
+                <div class="diya" id="diya4">
+                    <span class="diya-label">Prosperity</span>
+                </div>
+                <div class="diya" id="diya5">
+                    <span class="diya-label">Peace</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mithai Section -->
+        <div class="mithai-section" id="mithaiSection">
+            <h2 class="section-title">Enjoy Diwali Sweets</h2>
+            <p class="instructions">Click on each sweet to enjoy the festival treats and gather blessings</p>
+            
+            <div class="mithai-container">
+                <div class="mithai kaju-katli" id="mithai1">🔸</div>
+                <div class="mithai ladoo" id="mithai2">🟡</div>
+                <div class="mithai jalebi" id="mithai3">🟠</div>
+                <div class="mithai chocolate" id="mithai4">🟤</div>
+                <div class="mithai donut" id="mithai5">🍩</div>
+            </div>
+        </div>
+
+        <!-- Rocket -->
+        <div class="rocket" id="rocket">
+            <div class="rocket-top"></div>
+            <div class="rocket-body"></div>
+            <div class="rocket-fire"></div>
+        </div>
+
+        <!-- Messages -->
+        <div class="message-container" id="messageContainer">
+            <div class="diwali-message">HAPPY DIWALI!</div>
+            <div class="by-line">By Satyam</div>
+            <div class="motivational-text">
+                May the glow of the Diyas light your path to success, prosperity, and happiness. Shine bright!
+            </div>
+        </div>
+
+        <!-- Fireworks -->
+        <div class="fireworks" id="fireworks"></div>
+
+        <!-- Surprise Popup -->
+        <div class="surprise-popup" id="surprisePopup">
+            <h3>Special Surprise!</h3>
+            <p>Wait for an amazing surprise on 19th November!</p>
+            <button class="close-popup" id="closePopup">Close</button>
+        </div>
+    </div>
+
+    <script>
+        // Initialize variables
+        let litDiyas = 0;
+        const totalDiyas = 5;
+        let eatenMithai = 0;
+        const totalMithai = 5;
+        let soundEnabled = true;
+
+        // Sound elements
+        const clickSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-select-click-1109.mp3');
+        const diyaSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-magic-sparkle-sound-3091.mp3');
+        const mithaiSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-fast-small-sweep-transition-166.mp3');
+        const rocketSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-spaceship-engines-1315.mp3');
+        const blastSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-explosion-in-the-sky-1644.mp3');
+        const celebrationSound = new Audio('https://assets.mixkit.co/sfx/preview/mixkit-festive-happy-crowd-429.mp3');
+        const bgMusic = new Audio('https://assets.mixkit.co/music/preview/mixkit-happy-times-158.mp3');
+        
+        // Set volume for audio elements
+        clickSound.volume = 0.7;
+        diyaSound.volume = 0.7;
+        mithaiSound.volume = 0.7;
+        rocketSound.volume = 0.7;
+        blastSound.volume = 0.7;
+        celebrationSound.volume = 0.7;
+        bgMusic.volume = 0.4;
+        bgMusic.loop = true;
+
+        // Sound control
+        const soundControl = document.getElementById('soundControl');
+        soundControl.addEventListener('click', () => {
+            soundEnabled = !soundEnabled;
+            soundControl.textContent = soundEnabled ? '🔊' : '🔇';
+            
+            if (soundEnabled) {
+                bgMusic.play().catch(e => console.log('Audio play failed:', e));
+            } else {
+                bgMusic.pause();
+            }
+        });
+
+        // Create stars in the sky
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            const starCount = 250;
+            
+            for (let i = 0; i < starCount; i++) {
+                const star = document.createElement('div');
+                star.classList.add('star');
+                
+                const size = Math.random() * 3 + 1;
+                star.style.width = `${size}px`;
+                star.style.height = `${size}px`;
+                
+                star.style.left = `${Math.random() * 100}vw`;
+                star.style.top = `${Math.random() * 100}vh`;
+                
+                star.style.animationDelay = `${Math.random() * 5}s`;
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create floating elements
+        function createFloatingElements() {
+            const container = document.getElementById('floatingElements');
+            const symbols = ['✦', '✧', '❁', '♡', '★', '☆', '☼', '☾'];
+            
+            for (let i = 0; i < 25; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                element.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+                element.style.left = `${Math.random() * 100}vw`;
+                element.style.animationDuration = `${15 + Math.random() * 20}s`;
+                element.style.animationDelay = `${Math.random() * 5}s`;
+                element.style.fontSize = `${1.5 + Math.random() * 2}rem`;
+                container.appendChild(element);
+            }
+        }
+
+        // Update progress indicator
+        function updateProgress(step) {
+            for (let i = 1; i <= 4; i++) {
+                const dot = document.getElementById(`progress${i}`);
+                if (i <= step) {
+                    dot.classList.add('active');
+                } else {
+                    dot.classList.remove('active');
+                }
+            }
+        }
+
+        // Create sparkle effect
+        function createSparkle(x, y) {
+            for (let i = 0; i < 8; i++) {
+                const sparkle = document.createElement('div');
+                sparkle.classList.add('sparkle');
+                sparkle.style.left = `${x}px`;
+                sparkle.style.top = `${y}px`;
+                
+                document.body.appendChild(sparkle);
+                
+                setTimeout(() => {
+                    sparkle.remove();
+                }, 1000);
+            }
+        }
+
+        // Diya lighting logic
+        function lightDiya(diyaId) {
+            const diya = document.getElementById(diyaId);
+            if (!diya.classList.contains('lit')) {
+                diya.classList.add('lit');
+                litDiyas++;
+                
+                if (soundEnabled) {
+                    diyaSound.currentTime = 0;
+                    diyaSound.play();
+                }
+                
+                // Create sparkle effect
+                const rect = diya.getBoundingClientRect();
+                const x = rect.left + rect.width / 2;
+                const y = rect.top + rect.height / 2;
+                createSparkle(x, y);
+                
+                // Check if all diyas are lit
+                if (litDiyas === totalDiyas) {
+                    setTimeout(() => {
+                        if (soundEnabled) {
+                            clickSound.currentTime = 0;
+                            clickSound.play();
+                        }
+                        document.getElementById('diyasSection').style.display = 'none';
+                        document.getElementById('mithaiSection').style.display = 'block';
+                        updateProgress(2);
+                        
+                        // Show mithai with animation
+                        const mithais = document.querySelectorAll('.mithai');
+                        mithais.forEach((mithai, index) => {
+                            setTimeout(() => {
+                                mithai.classList.add('show');
+                            }, index * 300);
+                        });
+                    }, 1000);
+                }
+            }
+        }
+
+        // Mithai eating logic
+        function eatMithai(mithaiId) {
+            const mithai = document.getElementById(mithaiId);
+            if (!mithai.classList.contains('eaten')) {
+                mithai.classList.add('eaten');
+                mithai.style.animation = 'none';
+                mithai.style.transform = 'scale(0)';
+                mithai.style.opacity = '0';
+                mithai.style.transition = 'all 0.5s ease';
+                
+                if (soundEnabled) {
+                    mithaiSound.currentTime = 0;
+                    mithaiSound.play();
+                }
+                
+                eatenMithai++;
+                
+                if (eatenMithai === totalMithai) {
+                    setTimeout(() => {
+                        if (soundEnabled) {
+                            clickSound.currentTime = 0;
+                            clickSound.play();
+                        }
+                        document.getElementById('mithaiSection').style.display = 'none';
+                        updateProgress(3);
+                        launchRocket();
+                    }, 1000);
+                }
+            }
+        }
+
+        // Rocket launch
+        function launchRocket() {
+            const rocket = document.getElementById('rocket');
+            
+            if (soundEnabled) {
+                rocketSound.currentTime = 0;
+                rocketSound.play();
+            }
+            
+            // Launch rocket
+            rocket.style.bottom = '100vh';
+            
+            // Wait for rocket to reach top, then explode and show message
+            setTimeout(() => {
+                rocket.style.display = 'none';
+                
+                if (soundEnabled) {
+                    rocketSound.pause();
+                    blastSound.currentTime = 0;
+                    blastSound.play();
+                    celebrationSound.currentTime = 0;
+                    celebrationSound.play();
+                }
+                
+                createFireworks();
+                
+                setTimeout(() => {
+                    document.getElementById('messageContainer').style.display = 'block';
+                    updateProgress(4);
+                    
+                    // Add sparkles around the message
+                    setInterval(() => {
+                        const x = window.innerWidth / 2 + (Math.random() - 0.5) * 500;
+                        const y = window.innerHeight / 2 + (Math.random() - 0.5) * 300;
+                        createSparkle(x, y);
+                    }, 300);
+                    
+                    // Show surprise popup after a delay
+                    setTimeout(() => {
+                        document.getElementById('surprisePopup').style.display = 'block';
+                    }, 4000);
+                    
+                }, 1000);
+            }, 4000);
+        }
+
+        // Create fireworks
+        function createFireworks() {
+            const fireworksContainer = document.getElementById('fireworks');
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff9900'];
+            
+            for (let i = 0; i < 80; i++) {
+                setTimeout(() => {
+                    const firework = document.createElement('div');
+                    firework.classList.add('firework');
+                    
+                    const color = colors[Math.floor(Math.random() * colors.length)];
+                    firework.style.backgroundColor = color;
+                    
+                    const x = Math.random() * window.innerWidth;
+                    const y = Math.random() * window.innerHeight;
+                    firework.style.left = `${x}px`;
+                    firework.style.top = `${y}px`;
+                    
+                    const tx = (Math.random() - 0.5) * 400;
+                    const ty = (Math.random() - 0.5) * 400;
+                    firework.style.setProperty('--tx', `${tx}px`);
+                    firework.style.setProperty('--ty', `${ty}px`);
+                    
+                    fireworksContainer.appendChild(firework);
+                    
+                    setTimeout(() => {
+                        if (firework.parentNode) {
+                            firework.remove();
+                        }
+                    }, 2000);
+                }, i * 80);
+            }
+            
+            // Continue fireworks
+            setInterval(() => {
+                if (Math.random() > 0.5) {
+                    createSingleFirework();
+                }
+            }, 500);
+        }
+
+        function createSingleFirework() {
+            const fireworksContainer = document.getElementById('fireworks');
+            const firework = document.createElement('div');
+            firework.classList.add('firework');
+            
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff', '#ff9900'];
+            const color = colors[Math.floor(Math.random() * colors.length)];
+            firework.style.backgroundColor = color;
+            
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            firework.style.left = `${x}px`;
+            firework.style.top = `${y}px`;
+            
+            const tx = (Math.random() - 0.5) * 400;
+            const ty = (Math.random() - 0.5) * 400;
+            firework.style.setProperty('--tx', `${tx}px`);
+            firework.style.setProperty('--ty', `${ty}px`);
+            
+            fireworksContainer.appendChild(firework);
+            
+            setTimeout(() => {
+                if (firework.parentNode) {
+                    firework.remove();
+                }
+            }, 2000);
+        }
+
+        // Close popup
+        function closePopup() {
+            document.getElementById('surprisePopup').style.display = 'none';
+        }
+
+        // Initialize
+        window.onload = function() {
+            createStars();
+            createFloatingElements();
+            updateProgress(1);
+            
+            // Add event listeners to diyas
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`diya${i}`).addEventListener('click', function() {
+                    lightDiya(`diya${i}`);
+                });
+            }
+            
+            // Add event listeners to mithai
+            for (let i = 1; i <= 5; i++) {
+                document.getElementById(`mithai${i}`).addEventListener('click', function() {
+                    eatMithai(`mithai${i}`);
+                });
+            }
+            
+            // Add event listener to close popup
+            document.getElementById('closePopup').addEventListener('click', closePopup);
+            
+            // Start background music
+            if (soundEnabled) {
+                bgMusic.play().catch(e => console.log('Audio play failed:', e));
+            }
+        };
+    </script>
+</body>
+</html>
